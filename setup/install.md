@@ -40,7 +40,6 @@ Sign in when prompted.
 ```bash
 mkdir -p ~/.claude/skills ~/.claude/commands ~/.claude/hooks
 cp claude/CLAUDE.md.user ~/.claude/CLAUDE.md
-cp claude/settings.json ~/.claude/settings.json
 cp claude/style-notes.md ~/.claude/style-notes.md
 cp -R claude/skills/citation-filename ~/.claude/skills/
 cp -R claude/skills/pdf-to-markdown ~/.claude/skills/
@@ -48,24 +47,37 @@ cp claude/commands/wrapup.md ~/.claude/commands/
 cp claude/hooks/check-pdf-full-read.py ~/.claude/hooks/
 chmod +x ~/.claude/hooks/check-pdf-full-read.py
 python3 -c "import pymupdf" || pip3 install pymupdf   # the hook needs this
+
+# settings.json bakes in this Mac's absolute home-directory path for the
+# hook command — a plain `cp` would silently break the hook on any other
+# username. Rewrite the path at copy time instead of copying verbatim:
+sed "s|/Users/gabrielledobbs|$HOME|g" claude/settings.json > ~/.claude/settings.json
 ```
-`settings.json` already registers the hook by absolute path
-(`/Users/gabrielledobbs/...`) — **edit that path** to match the new
-machine's home directory before it will work.
 
 ## 6. Project folder
 
+On another of **your own** machines, the `soc-910-coursework` repo already
+exists on GitHub — clone it rather than recreating it:
+```bash
+cd ~/Desktop && gh repo clone gabbydobbs/soc-910-coursework "SOC 910"
+```
+(`project/.gitignore` and `CLAUDE.md.project` in this repo match what's
+already inside that clone — nothing further to copy in this case.)
+
+Only if this project has never existed on GitHub at all (a genuinely new
+project, not this one) would you instead do:
 ```bash
 mkdir -p ~/Desktop/"SOC 910"
 cp project/.gitignore ~/Desktop/"SOC 910"/.gitignore
 cp claude/CLAUDE.md.project ~/Desktop/"SOC 910"/CLAUDE.md
-cd ~/Desktop/"SOC 910" && git init && git add -A && git commit -m "Reinitialize on new machine"
-gh repo create soc-910-coursework --private --source=. --remote=origin --push
+cd ~/Desktop/"SOC 910" && git init && git add -A && git commit -m "Initial commit"
+gh repo create <new-repo-name> --private --source=. --remote=origin --push
 ```
 `project/structure.txt` shows the expected two-level layout;
 `project/last-20-commits.txt` shows history as of packaging. The actual
 paper/presentation files aren't in this packaging repo (participant/thesis
-data risk and file size) — re-download or re-sync those separately.
+data risk and file size) — either clone the real repo (above) or
+re-download them separately.
 
 ## 7. Stata MCP server (optional — only if you use Stata)
 
