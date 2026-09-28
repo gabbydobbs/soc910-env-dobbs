@@ -7,6 +7,9 @@
 
 <img width="971" height="408" alt="git log commits" src="https://github.com/user-attachments/assets/180c587e-1321-4056-a9d8-34526bfaeacf" />
 
+<img width="1046" height="430" alt="Stata not available" src="https://github.com/user-attachments/assets/acd341f0-84dd-4ac8-91dd-c3b0ea30a522" />
+
+
 
 
 
