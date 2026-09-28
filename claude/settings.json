@@ -1,3 +1,17 @@
 {
-  "theme": "dark"
+  "theme": "dark",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/gabrielledobbs/.claude/hooks/check-pdf-full-read.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
 }

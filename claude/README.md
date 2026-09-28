@@ -1,18 +1,36 @@
 # Claude Code configuration
 
-As of 2026-09-28, on the source machine:
+As of 2026-09-28. Install locations on a new machine:
 
-| Item | Status |
+| File here | Goes to |
 |---|---|
-| User-level `~/.claude/CLAUDE.md` | Does not exist |
-| Project-level `CLAUDE.md` (in `~/Desktop/SOC 910`) | Does not exist |
-| `~/.claude/settings.json` | Exists — copied here as `settings.json` (contains only `{"theme": "dark"}`, nothing sensitive) |
-| User-written skills (`~/.claude/skills/`) | None. The only entry present is a marketplace-synced plugin skill, not something written by the user — not copied, since it's reinstalled via the marketplace rather than carried by hand (see `setup/install.md`) |
-| Custom slash commands (`commands/`) | Directory does not exist |
-| Custom hooks (`hooks/`) | Directory does not exist |
+| `CLAUDE.md.user` | `~/.claude/CLAUDE.md` |
+| `CLAUDE.md.project` | `<project folder>/CLAUDE.md` (e.g. `~/Desktop/SOC 910/CLAUDE.md`) |
+| `settings.json` | `~/.claude/settings.json` |
+| `style-notes.md` | `~/.claude/style-notes.md` (referenced by `CLAUDE.md.user`) |
+| `skills/citation-filename/` | `~/.claude/skills/citation-filename/` |
+| `skills/pdf-to-markdown/` | `~/.claude/skills/pdf-to-markdown/` |
+| `commands/wrapup.md` | `~/.claude/commands/wrapup.md` |
+| `hooks/check-pdf-full-read.py` | `~/.claude/hooks/check-pdf-full-read.py` (registered in `settings.json`) |
 
-Nothing was redacted in this folder — `settings.json` contains no keys, tokens,
-or passwords.
+No keys, tokens, or passwords appear in any of these files — nothing here
+needed redaction. `settings.json` only configures theme and the hook
+below.
 
-If you want a starting `CLAUDE.md`, `setup/install.md` step 6 notes where to add
-one on the new machine.
+## What each customization does
+
+- **`citation-filename` skill** — renames downloaded papers to
+  `lastname_etal_year_short title_journal name`, automatically, whenever a
+  paper is downloaded/ingested.
+- **`pdf-to-markdown` skill** — picks the right PDF→Markdown tool (Docling
+  for table-heavy papers, pymupdf4llm/markitdown for prose-only), matching
+  this machine's pinned dependency constraints.
+- **`check-pdf-full-read.py` hook** (PostToolUse on `Read`) — flags when a
+  multi-page PDF was only partially read, so a partial read never gets
+  mistaken for the whole document.
+- **`/wrapup` command** — logs the work session, commits, and pushes the
+  coursework repo in one step.
+
+`style-notes.md` is not one of the three required customization types
+(skill/command/hook) — it's reference data those customizations and
+CLAUDE.md draw on, included for completeness.

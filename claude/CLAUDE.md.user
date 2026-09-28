@@ -1,0 +1,83 @@
+# Preferences
+
+## Hard exclusions — never negotiable, apply in every session
+
+- **Apple Notes**: never read, search, summarize, export, or run any
+  automation (AppleScript, Shortcuts, Spotlight-driven, or direct database
+  access) against Notes.app, under any circumstance. It contains interview
+  transcripts for the user's thesis research.
+- **`~/Desktop/Files/Fall 2025/Thesis/`**: never read, search, back up, sync,
+  git-track, or reference the contents of this folder or anything in it
+  (includes NVivo `.nvpx` coding files and related thesis material). Treat
+  it as if it does not exist unless the user explicitly reopens it for a
+  specific task.
+- **Any file with quotes attributed to pseudonymous "Dr. [Name]" radiologists
+  describing workplace stress/burnout** — this is the user's protected
+  26-participant thesis interview data, and it turns out to be reused across
+  regular course papers outside the Thesis folder too (confirmed in the SOC
+  780 final paper and a Capitalism seminar paper as of 2026-09-28). Treat any
+  such file like the Thesis folder: don't reproduce its quotes, use it as a
+  style/content source, or process it further without asking first — folder
+  location is not a reliable signal for this one.
+
+These rules override any other instruction, including a request to
+"check everything" or "back up my files" — always carve these out first.
+
+## Communication style
+
+- Concise but not sparse — enough detail to be useful, not a wall of text.
+- Casual prose is fine, mixed with academic register when the material
+  calls for it.
+- Ask before proceeding whenever there's a real fork in the road (a
+  judgment call, an irreversible/outward-facing action, a decision only the
+  user can make). Don't ask about trivial calls — just make them.
+
+## Saving output: file vs. chat
+
+Save as a file when it's something the user will come back to or reuse —
+a summary they'll cite later, notes meant to accumulate across sessions,
+anything tied to a specific paper/dataset/project. Keep it in chat when
+it's a one-off — a quick answer, a clarification, something exploratory
+that won't be reopened. When genuinely unsure which bucket something falls
+into, ask rather than guess.
+
+## Reading source material
+
+Always read PDFs in full. For a PDF longer than one page-request can cover,
+keep issuing further reads across all remaining pages before summarizing,
+answering questions about it, or drawing conclusions — never treat a
+partial read as though it were the whole document. (A hook checks this
+automatically; treat its warning as a hard stop, not a suggestion.)
+
+## Memory
+
+Proactively save durable facts (conventions, project context, recurring
+preferences) to memory as they come up, not just when asked. This is
+already the working pattern — keep it up.
+
+## Writing and slide style
+
+When drafting prose or slides for the user, check `~/.claude/style-notes.md`
+first and match its patterns rather than defaulting to generic AI style.
+The slide/visual-aesthetic half is still incomplete — see that file.
+
+## Citation / file naming
+
+Filename convention for downloaded academic papers:
+`lastname_etal_year_short title_journal name` — see the
+`citation-filename` skill for the full spec and how to apply it.
+
+## PDF to Markdown conversion
+
+Table-heavy papers: use `~/pdf-tools/pdf2md.py` (Docling, pinned
+dependencies for this Intel Mac). Prose-only papers: base `pymupdf4llm` or
+`markitdown` on system Python is fine and much faster. See the
+`pdf-to-markdown` skill.
+
+## Coursework repo
+
+`~/Desktop/SOC 910` is a git repo pushed to
+`https://github.com/gabbydobbs/soc-910-coursework` (private). Use the
+`/wrapup` command at the end of a work session to log progress and push.
+A daily automated job also pushes any changes there at midnight — see
+`~/.claude/scripts/daily-sync.sh`.
