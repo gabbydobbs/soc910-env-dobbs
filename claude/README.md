@@ -10,6 +10,7 @@ As of 2026-09-28. Install locations on a new machine:
 | `style-notes.md` | `~/.claude/style-notes.md` (referenced by `CLAUDE.md.user`) |
 | `skills/citation-filename/` | `~/.claude/skills/citation-filename/` |
 | `skills/pdf-to-markdown/` | `~/.claude/skills/pdf-to-markdown/` |
+| `skills/match-my-style/` | `~/.claude/skills/match-my-style/` |
 | `commands/wrapup.md` | `~/.claude/commands/wrapup.md` |
 | `hooks/check-pdf-full-read.py` | `~/.claude/hooks/check-pdf-full-read.py` (registered in `settings.json`) |
 
@@ -25,6 +26,10 @@ below.
 - **`pdf-to-markdown` skill** — picks the right PDF→Markdown tool (Docling
   for table-heavy papers, pymupdf4llm/markitdown for prose-only), matching
   this machine's pinned dependency constraints.
+- **`match-my-style` skill** — applies the user's own writing/slide style
+  (extracted from her real papers and Google Slides decks into
+  `style-notes.md`) whenever drafting prose or slides, instead of defaulting
+  to generic AI style.
 - **`check-pdf-full-read.py` hook** (PostToolUse on `Read`) — flags when a
   multi-page PDF was only partially read, so a partial read never gets
   mistaken for the whole document.

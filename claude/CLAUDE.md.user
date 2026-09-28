@@ -57,9 +57,8 @@ already the working pattern — keep it up.
 
 ## Writing and slide style
 
-When drafting prose or slides for the user, check `~/.claude/style-notes.md`
-first and match its patterns rather than defaulting to generic AI style.
-The slide/visual-aesthetic half is still incomplete — see that file.
+See the `match-my-style` skill — it applies automatically whenever drafting
+prose or slides for the user, using `~/.claude/style-notes.md`.
 
 ## Citation / file naming
 
